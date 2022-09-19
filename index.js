@@ -34,6 +34,15 @@ const db = {
 };
 
 const server = jsonServer.create();
+server.use(cors());
+
+// server.use((_req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+//   res.header('Access-Control-Allow-Headers', '*');
+//   next();
+// });
+
 const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
 
@@ -125,7 +134,6 @@ server.patch('/engine', (req, res) => {
 });
 
 server.use(router);
-server.use(cors());
 server.listen(PORT, () => {
   console.log('Server is running on port', PORT);
 });
