@@ -34,7 +34,16 @@ const db = {
 };
 
 const server = jsonServer.create();
-server.use(cors());
+
+server.use(
+  cors({
+    origin: true,
+    credentials: true,
+    preflightContinue: false,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  })
+);
+server.options('*', cors());
 
 // server.use((_req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
