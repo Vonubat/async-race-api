@@ -1,4 +1,5 @@
 const jsonServer = require('json-server');
+const cors = require('cors');
 
 const db = {
   garage: [
@@ -124,6 +125,7 @@ server.patch('/engine', (req, res) => {
 });
 
 server.use(router);
+server.use(cors());
 server.listen(PORT, () => {
   console.log('Server is running on port', PORT);
 });
